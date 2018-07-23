@@ -36,24 +36,27 @@ public class TopicController {
         this.topicService.delete(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET, params = {"search"})
+    @RequestMapping(method = RequestMethod.GET, value = "/search", params = {"search"})
     public List<TopicVO> findTopics(
             @RequestParam(value = "search") String search) {
+        System.out.println("uno");
         return this.topicService.find(search);
     }
 
-    @RequestMapping(method = RequestMethod.GET, params = {"search", "sort"})
+    @RequestMapping(method = RequestMethod.GET, value = "/search", params = {"search", "sort"})
     public List<TopicVO> findTopicsSortedBy(
             @RequestParam(value = "search") String search,
             @RequestParam(value = "sort") String sort) {
+        System.out.println("zwei");
         return this.topicService.find(search, sort);
     }
 
-    @RequestMapping(method = RequestMethod.GET, params = {"search", "sort", "order"})
+    @RequestMapping(method = RequestMethod.GET, value = "/search", params = {"search", "sort", "order"})
     public List<TopicVO> findTopicsSortedByInOrder(
             @RequestParam(value = "search") String search,
             @RequestParam(value = "sort") String sort,
             @RequestParam(value = "order") String order) {
+        System.out.println("drei");
         return this.topicService.find(search, sort, order);
     }
 
