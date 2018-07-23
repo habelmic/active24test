@@ -39,7 +39,6 @@ public class TopicController {
     @RequestMapping(method = RequestMethod.GET, value = "/search", params = {"search"})
     public List<TopicVO> findTopics(
             @RequestParam(value = "search") String search) {
-        System.out.println("uno");
         return this.topicService.find(search);
     }
 
@@ -47,7 +46,6 @@ public class TopicController {
     public List<TopicVO> findTopicsSortedBy(
             @RequestParam(value = "search") String search,
             @RequestParam(value = "sort") String sort) {
-        System.out.println("zwei");
         return this.topicService.find(search, sort);
     }
 
@@ -56,7 +54,6 @@ public class TopicController {
             @RequestParam(value = "search") String search,
             @RequestParam(value = "sort") String sort,
             @RequestParam(value = "order") String order) {
-        System.out.println("drei");
         return this.topicService.find(search, sort, order);
     }
 
