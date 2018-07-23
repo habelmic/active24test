@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface UserService {
-    public void add(UserVO userVO);
+    public void add(UserVO user);
     public List<UserVO> findAll();
     public void delete(String username);
 
