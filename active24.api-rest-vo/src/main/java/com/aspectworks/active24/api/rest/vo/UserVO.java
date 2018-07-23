@@ -1,10 +1,22 @@
 package com.aspectworks.active24.api.rest.vo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class UserVO {
 
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String username;
     private String firstName;
     private String surname;
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;
