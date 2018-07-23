@@ -7,11 +7,12 @@ import java.util.List;
 
 public interface TopicService {
 
-    public void add(TopicVO topic);
-    public void addComment(Integer id, CommentVO comment);
-    public void delete(Integer id);
-    public List<CommentVO> getComments(Integer id);
-    public List<TopicVO> find(String search);
-    public List<TopicVO> find(String search, String sortBy);
-    public List<TopicVO> find(String search, String sortBy, String order);
+    int add(TopicVO topic);
+    int addComment(Integer id, CommentVO comment);
+    void delete(Integer id);
+    List<CommentVO> getComments(Integer id);
+    List<TopicVO> find(String search);
+    List<TopicVO> find(String search, String sortBy);
+    List<TopicVO> find(String search, String sortBy, String order);
+    List<TopicVO> findAll();
 }

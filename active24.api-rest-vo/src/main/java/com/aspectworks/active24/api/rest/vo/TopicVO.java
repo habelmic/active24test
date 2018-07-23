@@ -15,10 +15,8 @@ public class TopicVO {
     @GeneratedValue
     private Integer Id;
 
-    @OneToOne
-    private UserVO user;
 
-    @OneToMany(mappedBy = "topic")
+    @OneToMany
     private List<CommentVO> comments = new ArrayList<>();
 
     private String title;

@@ -21,9 +21,14 @@ public class TopicController {
         this.topicService = topicService;
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public List<TopicVO> getAllTopics() {
+        return this.topicService.findAll();
+    }
+
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void createTopic(@RequestBody TopicVO topic) {
-        this.topicService.add(topic);
+    public int createTopic(@RequestBody TopicVO topic) {
+        return this.topicService.add(topic);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
@@ -52,9 +57,9 @@ public class TopicController {
         return this.topicService.find(search, sort, order);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/{id}/comments")
-    public void addComment(@PathVariable("id") Integer id, @RequestBody CommentVO comment) {
-        this.topicService.addComment(id, comment);
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/comments", produces = MediaType.APPLICATION_JSON_VALUE)
+    public int addComment(@PathVariable("id") Integer id, @RequestBody CommentVO comment) {
+        return this.topicService.addComment(id, comment);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/comments")

@@ -15,24 +15,29 @@ public class TopicServiceImpl implements TopicService {
 
 
     private final TopicRepository topicRepository;
+    private final CommentRepository commentRepository;
 
     @Autowired
-    public TopicServiceImpl(TopicRepository topicRepository) {
+    public TopicServiceImpl(TopicRepository topicRepository, CommentRepository commentRepository) {
         this.topicRepository = topicRepository;
+        this.commentRepository = commentRepository;
     }
 
     @Override
-    public void add(TopicVO topic) {
-        this.topicRepository.save(topic);
+    public int add(TopicVO topic) {
+        return this.topicRepository.save(topic).getId();
     }
 
     @Override
-    public void addComment(Integer id, CommentVO comment) {
+    public int addComment(Integer id, CommentVO comment) {
         Optional<TopicVO> result = this.topicRepository.findById(id);
         if (result.isPresent()) {
-            result.get().getComments().add(comment);
-            this.topicRepository.save(result.get());
+            TopicVO topic = result.get();
+            topic.getComments().add(comment);
+            this.commentRepository.save(comment);
+            return this.topicRepository.save(topic).getId();
         }
+        return 0;
     }
 
     @Override
@@ -55,6 +60,7 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public List<TopicVO> find(String search) {
         Sort sort = new Sort(Sort.Direction.ASC, "created");
+        System.out.println("time to cry");
         return this.topicRepository.findByContentContaining(search, sort);
     }
 
@@ -71,5 +77,10 @@ public class TopicServiceImpl implements TopicService {
             sort = sort.descending();
         }
         return this.topicRepository.findByContentContaining(search, sort);
+    }
+
+    @Override
+    public List<TopicVO> findAll() {
+        return this.topicRepository.findAll();
     }
 }

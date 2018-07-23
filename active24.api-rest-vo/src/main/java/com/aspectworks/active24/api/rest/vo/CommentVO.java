@@ -14,13 +14,13 @@ public class CommentVO {
     @GeneratedValue
     private Integer Id;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     private UserVO user;
-
-    @JsonIgnore
-    @ManyToOne
-    private TopicVO topic;
+//
+//    @JsonIgnore
+    //@ManyToOne
+    //private TopicVO topic;
 
     private String content;
     private Date created = new Date();

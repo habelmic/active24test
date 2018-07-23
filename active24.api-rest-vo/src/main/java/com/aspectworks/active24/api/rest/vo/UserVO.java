@@ -18,9 +18,6 @@ public class UserVO {
     private String firstName;
     private String surname;
 
-    @OneToOne
-    private TopicVO topic;
-
     @OneToMany(mappedBy = "user")
     private List<CommentVO> comments = new ArrayList<>();
 
